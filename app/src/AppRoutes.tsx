@@ -25,7 +25,9 @@ import Skills from './pages/Skills';
 import WebCallbackPage from './pages/WebCallbackPage';
 import Welcome from './pages/Welcome';
 import WorkflowsRun from './pages/WorkflowsRun';
+import OpenWorkerPage from './pages/openworker/OpenWorkerPage';
 import { IS_DEV } from './utils/config';
+
 
 interface AppRoutesProps {
   /**
@@ -135,6 +137,16 @@ const AppRoutes = ({ location }: AppRoutesProps = {}) => {
         element={
           <ProtectedRoute requireAuth={true}>
             <FlowCanvasPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* OpenWorker — specialist coworker delegation panel */}
+      <Route
+        path="/openworker"
+        element={
+          <ProtectedRoute requireAuth={true}>
+            <OpenWorkerPage />
           </ProtectedRoute>
         }
       />

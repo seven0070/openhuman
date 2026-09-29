@@ -1,0 +1,90 @@
+# =============================================================================
+# J.A.R.V.I.S. Configuration for OpenHuman
+# =============================================================================
+# This configuration tunes OpenHuman to operate as J.A.R.V.I.S. with:
+# - Full desktop control and application automation
+# - Voice pipeline: STT, TTS, Hotkeys, and Always-On listening
+# - High-capability agent autonomy and proactive multi-tool execution
+# =============================================================================
+
+# Default temperature for nuanced, precise reasoning
+default_temperature = 0.5
+output_language = "en"
+
+# -----------------------------------------------------------------------------
+# Agent Behavior & Autonomy
+# -----------------------------------------------------------------------------
+[agent]
+parallel_tools = true
+max_parallel_tools = 5
+max_tool_iterations = 25
+tool_dispatcher = "python"
+# Stepped memory context window: "minimal", "balanced", "extended", "maximum"
+memory_window = "extended"
+
+# Channel tool permissions (giving J.A.R.V.I.S. execution authority)
+[agent.channel_permissions]
+web = "execute"
+cli = "execute"
+
+# -----------------------------------------------------------------------------
+# Autonomy & Approvals Policy
+# -----------------------------------------------------------------------------
+[autonomy]
+# Master switch for the strict sandbox policy.
+# When false (default), ordinary shell and system tools execute smoothly
+enabled = false
+
+# -----------------------------------------------------------------------------
+# Desktop & Window Control Automation
+# -----------------------------------------------------------------------------
+[desktop]
+# When false, J.A.R.V.I.S. executes verified desktop automation goals smoothly
+approvals_enabled = false
+
+# -----------------------------------------------------------------------------
+# Voice Server & Speech Interaction
+# -----------------------------------------------------------------------------
+[voice_server]
+# Start voice service automatically on launch
+auto_start = true
+
+# Hotkey to speak: e.g. "Fn", "F9", or "Ctrl+Space"
+hotkey = "Fn"
+
+# "push" (hold-to-talk) or "tap" (toggle recording)
+activation_mode = "push"
+
+# STT engine: "backend" (managed cloud proxy), "openai", or "elevenlabs"
+stt_engine = "openai"
+
+# Words to bias speech recognition toward
+custom_dictionary = [
+    "JARVIS",
+    "Jarvis",
+    "Sir",
+    "OpenHuman",
+    "diagnostics",
+    "protocol",
+    "execute"
+]
+
+# Continuous background listening with Voice Activity Detection (VAD)
+always_on_enabled = false
+vad_onset_threshold = 0.03
+vad_hangover_ms = 700
+
+# -----------------------------------------------------------------------------
+# Context & Working Memory
+# -----------------------------------------------------------------------------
+[context]
+summarization_threshold = 0.8
+auto_compaction = true
+
+# -----------------------------------------------------------------------------
+# OpenWorker Specialist Delegation Subsystem
+# -----------------------------------------------------------------------------
+[openworker]
+port = 8899
+# Set to true to auto-launch the OpenWorker FastAPI sidecar on JARVIS startup
+auto_start = false

@@ -37,6 +37,8 @@ pub use crate::flows::tools::*;
 pub use crate::integrations::composio::tools::*;
 pub use crate::integrations::task_sources::tools::*;
 pub use crate::integrations::tools::*;
+pub use crate::openworker::tools::DelegateToOpenworkerTool;
+
 #[cfg(feature = "mcp")]
 pub use crate::mcp::registry::tools::*;
 pub use crate::memory::agent::tools::*;

@@ -563,6 +563,12 @@ fn build_registered_controllers() -> Vec<GroupedController> {
         DomainGroup::Integrations,
         crate::integrations::task_sources::all_task_sources_registered_controllers(),
     );
+    // OpenWorker specialist coworker delegation (security, cloud, docs, Slack, calendar)
+    push(
+        &mut controllers,
+        DomainGroup::Integrations,
+        crate::openworker::schemas::all_openworker_registered_controllers(),
+    );
     push(
         &mut controllers,
         DomainGroup::Desktop,

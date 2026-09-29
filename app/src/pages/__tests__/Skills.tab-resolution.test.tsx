@@ -133,6 +133,8 @@ describe('Connections ?tab= resolution — legacy aliases', () => {
     ['messaging', 'channels'],
     ['tools', 'mcp'],
     ['explorer', 'skills'],
+    ['desktop', 'computer'],
+    ['browser', 'computer'],
   ])('?tab=%s resolves to the %s tab', async (alias, canonical) => {
     renderAt(`?tab=${alias}`);
     expect(await selectedTab()).toBe(canonical);
@@ -155,7 +157,7 @@ describe('Connections ?tab= resolution — legacy aliases', () => {
 });
 
 describe('Connections ?tab= resolution — canonical values', () => {
-  it.each([['composio'], ['channels'], ['mcp'], ['skills'], ['wallet'], ['desktop']])(
+  it.each([['composio'], ['channels'], ['mcp'], ['skills'], ['wallet'], ['computer']])(
     '?tab=%s passes through unchanged',
     async tab => {
       renderAt(`?tab=${tab}`);

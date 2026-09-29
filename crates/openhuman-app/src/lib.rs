@@ -94,6 +94,8 @@ mod loopback_oauth;
 mod mascot_native_window;
 mod mcp_commands;
 mod native_notifications;
+mod openworker_process;
+
 #[cfg(target_os = "macos")]
 mod notch_window;
 mod process_kill;
@@ -3059,6 +3061,8 @@ pub fn run() {
         .manage(ptt_hotkeys::PttHotkeyState::new())
         .manage(PendingAppUpdateState::default());
     let builder = builder.manage(std::sync::Arc::new(imessage_scanner::ScannerRegistry::new()));
+    let builder = builder.manage(openworker_process::OpenWorkerHandle::new());
+
     builder
         .setup(move |app| {
             #[cfg(windows)]
@@ -3244,6 +3248,7 @@ pub fn run() {
             std::env::remove_var("OPENHUMAN_CEF_COOKIES_DB");
 
             app.manage(core_handle.clone());
+            app.manage(openworker_process::OpenWorkerHandle::new());
             // The desktop session owner (login, /auth/me, current user) talks
             // to whichever core `active_rpc_endpoint` resolves to.
             session::install(app.handle(), core_handle.clone());
@@ -3517,7 +3522,10 @@ pub fn run() {
             mcp_commands::mcp_open_client_config,
             loopback_oauth::start_loopback_oauth_listener,
             loopback_oauth::stop_loopback_oauth_listener,
-            claude_code::claude_code_login_launch
+            claude_code::claude_code_login_launch,
+            openworker_process::openworker_start,
+            openworker_process::openworker_stop,
+            openworker_process::openworker_status_cmd
         ])
         .build(context)
         .expect("error while building tauri application")

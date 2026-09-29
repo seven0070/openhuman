@@ -60,3 +60,6 @@
 [submodule "vendor/tinysearch"]
 	path = vendor/tinysearch
 	url = https://github.com/tinyhumansai/tinysearch.git
+[submodule "vendor/openworker"]
+	path = vendor/openworker
+	url = https://github.com/andrewyng/openworker.git

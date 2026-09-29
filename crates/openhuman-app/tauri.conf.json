@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "OpenHuman",
+  "productName": "JARVIS OpenHuman",
   "version": "0.64.7",
   "identifier": "com.openhuman.app",
   "build": {
@@ -13,7 +13,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "OpenHuman",
+        "title": "JARVIS OpenHuman",
         "width": 1280,
         "height": 900,
         "visible": false,

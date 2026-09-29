@@ -8,10 +8,10 @@ describe('WelcomeStep', () => {
   it('renders display title + subtitle', () => {
     renderWithProviders(<WelcomeStep onNext={() => {}} />);
     expect(
-      screen.getByRole('heading', { level: 1, name: /Hi\. I'm OpenHuman\./ })
+      screen.getByRole('heading', { level: 1, name: /Greetings\. I am J\.A\.R\.V\.I\.S\./ })
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/super-intelligent AI assistant that runs on your computer/i)
+      screen.getByText(/super-intelligent AI assistant and personal computing companion/i)
     ).toBeInTheDocument();
   });
 

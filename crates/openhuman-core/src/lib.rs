@@ -72,6 +72,8 @@ pub mod json_schema;
 pub mod mcp;
 #[cfg(feature = "media")]
 pub mod media;
+pub mod openworker;
+
 pub mod memory;
 #[cfg(feature = "modules")]
 pub mod modules;

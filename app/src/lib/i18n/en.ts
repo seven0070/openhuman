@@ -10,10 +10,10 @@ const en: TranslationMap = {
   'nav.assistant': 'Assistant',
 
   // Assistant surface: face mode toggle (Phase 6)
-  'assistant.faceMode.on': 'Talking to Tiny',
-  'assistant.faceMode.off': 'Talk to Tiny',
-  'assistant.faceMode.turnOn': 'Show mascot face',
-  'assistant.faceMode.turnOff': 'Hide mascot face',
+  'assistant.faceMode.on': 'Talking to J.A.R.V.I.S.',
+  'assistant.faceMode.off': 'Talk to J.A.R.V.I.S.',
+  'assistant.faceMode.turnOn': 'Show assistant face',
+  'assistant.faceMode.turnOff': 'Hide assistant face',
   'nav.connections': 'Connections',
   'nav.discord': 'Join our Discord',
   'nav.memory': 'Intelligence',
@@ -25,6 +25,7 @@ const en: TranslationMap = {
   'nav.flows': 'Workflows',
   'nav.workflowRuns': 'Workflow Runs',
   'nav.workflowDiscoveries': 'Discover Workflows',
+  'nav.openworker': 'Specialists',
 
   'nav.wallet': 'Wallet',
   // Agent World: Settings section UI
@@ -485,10 +486,10 @@ const en: TranslationMap = {
   'clearData.failedPersist': 'Failed to clear persisted app state. Please try again.',
 
   // Welcome page
-  'welcome.logoAlt': 'OpenHuman',
-  'welcome.title': 'Welcome to OpenHuman',
+  'welcome.logoAlt': 'J.A.R.V.I.S.',
+  'welcome.title': 'Welcome to J.A.R.V.I.S.',
   'welcome.subtitle':
-    'Your personal AI super intelligence. Private, simple and extremely powerful.',
+    'Your personal AI super intelligence and computing companion. Private, powerful, and at your command, Sir.',
   'welcome.connectPrompt': 'Configure RPC URL (Advanced)',
   'welcome.selectRuntime': 'Select a Runtime',
   'welcome.clearingAppData': 'Clearing app data...',
@@ -1221,9 +1222,9 @@ const en: TranslationMap = {
   'rewards.share': 'Share',
 
   // Onboarding
-  'onboarding.welcome': "Hi. I'm OpenHuman.",
+  'onboarding.welcome': "Greetings. I am J.A.R.V.I.S.",
   'onboarding.welcomeDesc':
-    'Your super-intelligent AI assistant that runs on your computer. Private, simple, and extremely powerful.',
+    'Your super-intelligent AI assistant and personal computing companion. Private, powerful, and ready at your command, Sir.',
   'onboarding.context': 'Context Gathering',
   'onboarding.contextDesc': 'Connect the tools and services you use every day.',
   'onboarding.localAI': 'Local AI',
