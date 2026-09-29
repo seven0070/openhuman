@@ -5,9 +5,7 @@ import OpenWorkerPage from './OpenWorkerPage';
 
 // Mock Tauri invoke
 const mockInvoke = vi.fn();
-vi.mock('@tauri-apps/api/core', () => ({
-  invoke: (...args: unknown[]) => mockInvoke(...args),
-}));
+vi.mock('@tauri-apps/api/core', () => ({ invoke: (...args: unknown[]) => mockInvoke(...args) }));
 
 // Mock coreRpcClient
 const mockCallCoreRpc = vi.fn();

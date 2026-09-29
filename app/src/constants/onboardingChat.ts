@@ -4,4 +4,4 @@
  * /chat with something to respond to.
  */
 export const TOUR_WELCOME_MESSAGE =
-  "Good day! J.A.R.V.I.S. is online and at your service. All systems operational. How may I assist you today, Sir?";
+  'Good day! J.A.R.V.I.S. is online and at your service. All systems operational. How may I assist you today, Sir?';

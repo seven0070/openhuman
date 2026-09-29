@@ -1222,7 +1222,7 @@ const en: TranslationMap = {
   'rewards.share': 'Share',
 
   // Onboarding
-  'onboarding.welcome': "Greetings. I am J.A.R.V.I.S.",
+  'onboarding.welcome': 'Greetings. I am J.A.R.V.I.S.',
   'onboarding.welcomeDesc':
     'Your super-intelligent AI assistant and personal computing companion. Private, powerful, and ready at your command, Sir.',
   'onboarding.context': 'Context Gathering',

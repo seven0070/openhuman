@@ -13,8 +13,7 @@ fn job_status_serialization_roundtrips() {
     ] {
         let serialized = serde_json::to_string(&status).expect("must serialize");
         assert_eq!(serialized, expected_str);
-        let deserialized: JobStatus =
-            serde_json::from_str(&serialized).expect("must deserialize");
+        let deserialized: JobStatus = serde_json::from_str(&serialized).expect("must deserialize");
         assert_eq!(deserialized, status);
     }
 }
@@ -25,12 +24,15 @@ fn coworker_serde_roundtrips() {
         id: "security".to_string(),
         name: "Security Auditor".to_string(),
         description: "Audits repository dependencies and configurations".to_string(),
-        capabilities: vec!["sast".to_string(), "cve".to_string(), "container".to_string()],
+        capabilities: vec![
+            "sast".to_string(),
+            "cve".to_string(),
+            "container".to_string(),
+        ],
     };
 
     let serialized = serde_json::to_string(&coworker).expect("serialize coworker");
-    let deserialized: Coworker =
-        serde_json::from_str(&serialized).expect("deserialize coworker");
+    let deserialized: Coworker = serde_json::from_str(&serialized).expect("deserialize coworker");
 
     assert_eq!(deserialized.id, "security");
     assert_eq!(deserialized.name, "Security Auditor");

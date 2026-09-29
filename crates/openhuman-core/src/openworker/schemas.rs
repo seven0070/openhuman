@@ -77,7 +77,10 @@ fn handle_delegate(params: Map<String, Value>) -> ControllerFuture {
             .and_then(|v| v.as_str())
             .ok_or("missing required param: goal")?
             .to_string();
-        let context = params.get("context").and_then(|v| v.as_str()).map(String::from);
+        let context = params
+            .get("context")
+            .and_then(|v| v.as_str())
+            .map(String::from);
 
         let job_id = ops::delegate_task(&coworker, &goal, context.as_deref())
             .await
@@ -134,9 +137,7 @@ fn handle_cancel(params: Map<String, Value>) -> ControllerFuture {
             .ok_or("missing required param: job_id")?
             .to_string();
 
-        ops::cancel_job(&job_id)
-            .await
-            .map_err(|e| e.to_string())?;
+        ops::cancel_job(&job_id).await.map_err(|e| e.to_string())?;
         Ok(Value::Bool(true))
     })
 }
@@ -271,4 +272,3 @@ pub fn all_openworker_controller_schemas() -> Vec<ControllerSchema> {
 #[cfg(test)]
 #[path = "schemas_tests.rs"]
 mod tests;
-

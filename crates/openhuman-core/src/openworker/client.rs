@@ -9,9 +9,7 @@ use std::time::Duration;
 
 use anyhow::{bail, Context, Result};
 
-use super::types::{
-    ApprovalRequest, Coworker, JobRequest, JobStarted, JobState, WorkerStatus,
-};
+use super::types::{ApprovalRequest, Coworker, JobRequest, JobStarted, JobState, WorkerStatus};
 
 /// Default port the OpenWorker FastAPI server listens on.
 pub const DEFAULT_PORT: u16 = 8899;
@@ -80,10 +78,7 @@ pub async fn list_coworkers() -> Result<Vec<Coworker>> {
         .context("connecting to OpenWorker server")?;
 
     if !resp.status().is_success() {
-        bail!(
-            "OpenWorker /api/coworkers returned HTTP {}",
-            resp.status()
-        );
+        bail!("OpenWorker /api/coworkers returned HTTP {}", resp.status());
     }
 
     resp.json::<Vec<Coworker>>()
@@ -123,7 +118,10 @@ pub async fn get_job(job_id: &str) -> Result<JobState> {
         .context("fetching job state from OpenWorker")?;
 
     if !resp.status().is_success() {
-        bail!("OpenWorker /api/job/{job_id} returned HTTP {}", resp.status());
+        bail!(
+            "OpenWorker /api/job/{job_id} returned HTTP {}",
+            resp.status()
+        );
     }
 
     resp.json::<JobState>().await.context("parsing job state")

@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { invoke } from '@tauri-apps/api/core';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
 import { callCoreRpc } from '../../services/coreRpcClient';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -59,8 +60,7 @@ function CoworkerBadge({ id }: { id: string }) {
   return (
     <span
       className="text-xs font-semibold px-2 py-0.5 rounded-full text-white"
-      style={{ background: colors[id] ?? '#6b7280' }}
-    >
+      style={{ background: colors[id] ?? '#6b7280' }}>
       {id}
     </span>
   );
@@ -83,15 +83,13 @@ function ApprovalCard({
         <button
           id={`approve-${gate.action_id}`}
           className="px-3 py-1 text-xs rounded-md bg-green-600 hover:bg-green-500 text-white font-medium transition-colors"
-          onClick={() => onRespond(job.job_id, gate.action_id, true)}
-        >
+          onClick={() => onRespond(job.job_id, gate.action_id, true)}>
           Approve
         </button>
         <button
           id={`deny-${gate.action_id}`}
           className="px-3 py-1 text-xs rounded-md bg-red-600 hover:bg-red-500 text-white font-medium transition-colors"
-          onClick={() => onRespond(job.job_id, gate.action_id, false)}
-        >
+          onClick={() => onRespond(job.job_id, gate.action_id, false)}>
           Deny
         </button>
       </div>
@@ -133,16 +131,13 @@ function JobCard({
           <button
             id={`cancel-job-${job.job_id}`}
             className="text-xs text-red-400 hover:text-red-300 shrink-0 transition-colors"
-            onClick={() => onCancel(job.job_id)}
-          >
+            onClick={() => onCancel(job.job_id)}>
             Cancel
           </button>
         ) : null}
       </div>
 
-      {job.progress && (
-        <p className="text-xs text-content-secondary">{job.progress}</p>
-      )}
+      {job.progress && <p className="text-xs text-content-secondary">{job.progress}</p>}
 
       {job.approvals_needed.map(gate => (
         <ApprovalCard key={gate.action_id} job={job} gate={gate} onRespond={onApprove} />
@@ -202,17 +197,13 @@ export default function OpenWorkerPage() {
   // ── Job polling ─────────────────────────────────────────────────────────────
 
   const pollJobs = useCallback(async () => {
-    const active = jobs.filter(
-      j => j.status === 'running' || j.status === 'awaiting_approval',
-    );
+    const active = jobs.filter(j => j.status === 'running' || j.status === 'awaiting_approval');
     if (active.length === 0) return;
 
     const updated = await Promise.all(
-      active.map(j => rpc<Job>('openworker.job_state', { job_id: j.job_id }).catch(() => j)),
+      active.map(j => rpc<Job>('openworker.job_state', { job_id: j.job_id }).catch(() => j))
     );
-    setJobs(prev =>
-      prev.map(j => updated.find(u => u.job_id === j.job_id) ?? j),
-    );
+    setJobs(prev => prev.map(j => updated.find(u => u.job_id === j.job_id) ?? j));
   }, [jobs]);
 
   useEffect(() => {
@@ -274,7 +265,11 @@ export default function OpenWorkerPage() {
   const handleCancel = async (jobId: string) => {
     await rpc('openworker.cancel', { job_id: jobId });
     setJobs(prev =>
-      prev.map(j => (j.job_id === jobId ? { ...j, status: 'failed' as CoworkerStatus, error: 'Cancelled by user.' } : j)),
+      prev.map(j =>
+        j.job_id === jobId
+          ? { ...j, status: 'failed' as CoworkerStatus, error: 'Cancelled by user.' }
+          : j
+      )
     );
   };
 
@@ -301,8 +296,7 @@ export default function OpenWorkerPage() {
             <button
               id="openworker-stop-btn"
               onClick={stopServer}
-              className="px-3 py-1.5 text-xs rounded-lg bg-surface-strong hover:bg-surface-hover text-content-secondary transition-colors"
-            >
+              className="px-3 py-1.5 text-xs rounded-lg bg-surface-strong hover:bg-surface-hover text-content-secondary transition-colors">
               Stop
             </button>
           ) : (
@@ -310,8 +304,7 @@ export default function OpenWorkerPage() {
               id="openworker-start-btn"
               onClick={startServer}
               disabled={starting}
-              className="px-3 py-1.5 text-xs rounded-lg bg-primary-500 hover:bg-primary-400 text-white font-medium transition-colors disabled:opacity-50"
-            >
+              className="px-3 py-1.5 text-xs rounded-lg bg-primary-500 hover:bg-primary-400 text-white font-medium transition-colors disabled:opacity-50">
               {starting ? 'Starting…' : 'Start server'}
             </button>
           )}
@@ -336,8 +329,7 @@ export default function OpenWorkerPage() {
                       selectedCoworker === cw.id
                         ? 'bg-primary-500/10 border border-primary-500/30'
                         : 'hover:bg-surface-hover border border-transparent'
-                    }`}
-                  >
+                    }`}>
                     <div className="flex items-center gap-2 mb-0.5">
                       <CoworkerBadge id={cw.id} />
                       <span className="text-sm font-medium text-content">{cw.name}</span>
@@ -370,8 +362,7 @@ export default function OpenWorkerPage() {
               id="openworker-submit-btn"
               onClick={submitJob}
               disabled={!serverRunning || !selectedCoworker || !goal.trim() || submitting}
-              className="w-full py-2 rounded-lg bg-primary-500 hover:bg-primary-400 text-white text-sm font-medium transition-colors disabled:opacity-40"
-            >
+              className="w-full py-2 rounded-lg bg-primary-500 hover:bg-primary-400 text-white text-sm font-medium transition-colors disabled:opacity-40">
               {submitting ? 'Delegating…' : 'Delegate task'}
             </button>
           </div>

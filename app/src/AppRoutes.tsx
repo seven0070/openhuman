@@ -19,15 +19,14 @@ import FlowsPage from './pages/FlowsPage';
 import Invites from './pages/Invites';
 import Notifications from './pages/Notifications';
 import Onboarding from './pages/onboarding/Onboarding';
+import OpenWorkerPage from './pages/openworker/OpenWorkerPage';
 import { PttOverlayPage } from './pages/PttOverlayPage';
 import Settings from './pages/Settings';
 import Skills from './pages/Skills';
 import WebCallbackPage from './pages/WebCallbackPage';
 import Welcome from './pages/Welcome';
 import WorkflowsRun from './pages/WorkflowsRun';
-import OpenWorkerPage from './pages/openworker/OpenWorkerPage';
 import { IS_DEV } from './utils/config';
-
 
 interface AppRoutesProps {
   /**
